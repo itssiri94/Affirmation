@@ -1,0 +1,103 @@
+<!DOCTYPE html><html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Mini Affirmation Generator</title>
+  <link rel="manifest" href="manifest.json" />
+  <meta name="theme-color" content="#000000" />
+  <style>
+    body {
+      font-family: 'Arial', sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      background: linear-gradient(to right, #000000, #ff0000);
+      color: #fff;
+      margin: 0;
+      overflow: hidden;
+    }
+    .container {
+      text-align: center;
+      background: rgba(0, 0, 0, 0.6);
+      padding: 40px;
+      border-radius: 20px;
+      box-shadow: 0 0 20px rgba(255, 0, 0, 0.5);
+      animation: fadeIn 2s ease-in-out;
+    }
+    button {
+      margin-top: 20px;
+      padding: 10px 20px;
+      background-color: #ff0000;
+      border: none;
+      color: white;
+      font-size: 16px;
+      border-radius: 10px;
+      cursor: pointer;
+      transition: transform 0.2s;
+    }
+    button:hover {
+      background-color: #cc0000;
+      transform: scale(1.05);
+    }
+    .affirmation {
+      font-size: 24px;
+      margin-top: 20px;
+      min-height: 60px;
+      animation: fadeInUp 0.8s ease-in-out;
+    }@keyframes fadeIn {
+  from { opacity: 0; transform: scale(0.9); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+  </style>
+</head>
+<body>
+  <audio autoplay loop>
+    <source src="https://cdn.pixabay.com/download/audio/2023/03/07/audio_7a38ad116b.mp3?filename=calm-and-peaceful-140131.mp3" type="audio/mpeg">
+    Your browser does not support the audio element.
+  </audio>  <div class="container">
+    <h1>Mini Affirmation Generator</h1>
+    <button onclick="generateAffirmation()">Give me an affirmation</button>
+    <div class="affirmation" id="affirmationText"></div>
+  </div>  <script>
+    const affirmations = [
+      "I am enough just as I am.",
+      "Every day I grow stronger and wiser.",
+      "I trust the timing of my life.",
+      "I deserve peace and joy.",
+      "I am proud of who I am becoming.",
+      "I attract positive energy.",
+      "My potential is limitless.",
+      "I radiate confidence and courage.",
+      "Everything I need is already within me.",
+      "Today, I choose self-love.",
+      "أنا أستحق السعادة والنجاح.",
+      "كل يوم هو فرصة جديدة للنمو.",
+      "أنا قوية وقادرة على التغلب على أي تحدي.",
+      "أنا ممتنة لكل النعم في حياتي.",
+      "أنا أُحب نفسي كما أنا.",
+      "أنا أستحق الحب والاحترام.",
+      "كل ما أحتاجه موجود بداخلي.",
+      "أنا أسمح للسلام بأن يملأ قلبي.",
+      "أنا أعيش حياة مليئة بالإيجابية.",
+      "أنا أؤمن بنفسي وبقدراتي."
+    ];
+
+    function generateAffirmation() {
+      const randomIndex = Math.floor(Math.random() * affirmations.length);
+      document.getElementById('affirmationText').innerText = affirmations[randomIndex];
+    }
+
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', () => {
+        navigator.serviceWorker.register('service-worker.js');
+      });
+    }
+  </script></body>
+</html>
